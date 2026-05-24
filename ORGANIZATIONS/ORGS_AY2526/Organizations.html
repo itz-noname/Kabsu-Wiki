@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizations - KABSU Wiki</title>
+  <link rel="icon" type="image/x-icon" href="./Images/KABSU WiKi Favicon.ico">
+  <link rel="stylesheet" href="ORGANIZATIONS.css">
+    <script src="Organizations.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Playfair+Display:ital,wght@1,900&family=Poppins:wght@300;400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a class="navbar-brand" href="../../HOME PAGE/Index.html">
+      <img class="kw-badge" src="./Images/KABSU WiKi Logo.png">
+      <span class="navbar-brand-text">KABSU Wiki</span>
+    </a>
+    <ul class="navbar-nav">
+      <li><a href="../../HOME PAGE/Index.html">Home</a></li>
+      <li><a href="../../UNIVERSITY/University.html">University</a></li>
+      <li><a href="../../COLLEGES/Colleges.html">Colleges</a></li>
+      <li><a href="../Recognized Orgs AY.html" class="active">Organizations</a></li>
+      <li class="has-dropdown">
+        <a>About ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="../../ABOUT US/About Us.html">About Us</a></li>
+          <li><a href="../../CONTACTS/Contacts.html">Contacts</a></li>
+          <li><a href="../../FEEDBACK/Feedback.html">Feedback</a></li>
+          <li><a href="../../TERMS OF USE/Terms of Use.html">Terms of Use</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="page-wrapper">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-breadcrumb">
+        <a href="../../HOME PAGE/Index.html">Home</a>
+        <span>›</span>
+        <a href="../../ORGANIZATIONS/Recognized Orgs AY.html">Organizations</a>
+        <span>›</span>
+        <span style="color:var(--cream);">A.Y. 2025 - 2026</span>
+      </div>
+      <div class="hero-title-wrap">
+        <div class="hero-title-pre">KABSU Wiki</div>
+        <div class="hero-title-main">ORGANIZATIONS</div>
+        <div class="hero-title-sub">Recognized A.Y. 25-26</div>
+      </div>
+      <p class="hero-tagline">
+        Explore the recognized organizations that shape student life at CvSU.
+      </p>
+    </section>
+
+    <!-- INTRO STRIP -->
+    <div class="intro-strip">
+      <div class="intro-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#f5e8d5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <p class="intro-text">
+        Browse all <strong>recognized student organizations</strong> of Cavite State University - Main Campus — spanning academic, non-academic, student councils, religious, and performing arts groups.
+      </p>
+    </div>
+
+    <!-- TAB BAR -->
+    <div class="tab-bar" id="tabBar">
+      <button class="tab-btn active" data-target="academic">Academic</button>
+      <button class="tab-btn" data-target="non-academic">Non-Academic</button>
+      <button class="tab-btn" data-target="councils">Student Councils</button>
+      <button class="tab-btn" data-target="religious">Religious</button>
+      <button class="tab-btn" data-target="performing">Performing Arts</button>
+    </div>
+
+    <!-- ORG SECTIONS -->
+    <div class="orgs-wrapper">
+
+      <!-- ACADEMIC -->
+      <div class="org-section" id="academic">
+        <div class="section-label">Student Organizations</div>
+        <div class="section-title">Academic Organizations</div>
+        <div class="section-divider"></div>
+        <div class="org-grid" id="grid-academic"></div>
+      </div>
+
+      <!-- NON-ACADEMIC -->
+      <div class="org-section" id="non-academic">
+        <div class="section-label">Student Organizations</div>
+        <div class="section-title">Non-Academic Organizations</div>
+        <div class="section-divider"></div>
+        <div class="org-grid" id="grid-non-academic"></div>
+      </div>
+
+      <!-- STUDENT COUNCILS -->
+      <div class="org-section" id="councils">
+        <div class="section-label">Student Organizations</div>
+        <div class="section-title">Student Councils</div>
+        <div class="section-divider"></div>
+        <div class="org-grid" id="grid-councils"></div>
+      </div>
+
+      <!-- RELIGIOUS -->
+      <div class="org-section" id="religious">
+        <div class="section-label">Student Organizations</div>
+        <div class="section-title">Religious Organizations</div>
+        <div class="section-divider"></div>
+        <div class="org-grid" id="grid-religious"></div>
+      </div>
+
+      <!-- PERFORMING ARTS -->
+      <div class="org-section" id="performing">
+        <div class="section-label">Student Organizations</div>
+        <div class="section-title">Performing Arts</div>
+        <div class="section-divider"></div>
+        <div class="org-grid" id="grid-performing"></div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-brand">
+        <div class="footer-brand-name">
+          <img class="kw-badge-lg" src="./Images/KABSU WiKi Logo.png">
+          <span style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:#f5e8d5;">KABSU<br>WiKi</span>
+        </div>
+        <p class="footer-desc">KABSU Wiki is an informational platform created to serve the Cavite State University (CvSU) community.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="../../HOME PAGE/Index.html">Home</a></li>
+          <li><a href="../UNIVERSITY/University.html">University</a></li>
+          <li><a href="../COLLEGES/Colleges.html">Colleges</a></li>
+          <li><a href="../Recognized Orgs AY.html">Organizations</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">University Overview</div>
+        <ul class="footer-links">
+          <li><a href="../UNIVERSITY/HISTORY/History.html">History</a></li>
+          <li><a href="../UNIVERSITY/MISSION-VISION/Mission-Vision.html">Mandate, Vision, Mission</a></li>
+          <li><a href="../UNIVERSITY/UNIVERSITY SEAL/University Seal.html">University Seal</a></li>
+          <li><a href="../UNIVERSITY/HISTORICAL LANDMARK/Historical Landmark.html">Historical Landmark</a></li>
+          <li><a href="../UNIVERSITY/CVSU HYMN/CVSU Hymn.html">CvSU Hymn</a></li>
+        </ul>
+        <div class="footer-email-label">Email Us</div>
+        <div class="footer-email-val">kabsuwiki@gmail.com</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Information</div>
+        <ul class="footer-links">
+          <li><a href="../ABOUT US/About Us.html">About Us</a></li>
+          <li><a href="../CONTACTS/Contacts.html">Contacts</a></li>
+          <li><a href="../FEEDBACK/Feedback.html">Feedback</a></li>
+          <li><a href="../TERMS OF USE/Terms of Use.html">Terms of Use</a></li>
+        </ul>
+      </div>
+    </footer>
+    <div class="footer-copyright">© Copyright 2026 KABSU Wiki. All rights reserved.</div>
+
+  </div><!-- /#page-wrapper -->
+
+</body>
+</html>
