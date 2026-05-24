@@ -1,3 +1,87 @@
+// ============================================================
+// STATS — Firebase Realtime Database (REST, no SDK needed)
+// ============================================================
+const DB = 'https://kabsu-wiki-default-rtdb.firebaseio.com';
+
+// Format numbers as at least 3 digits: 0→"000", 42→"042", 1500→"1500"
+function fmt(n) {
+  return n < 1000 ? String(n).padStart(3, '0') : String(n);
+}
+
+// Read all stats and update the display
+async function loadStats() {
+  try {
+    const res  = await fetch(`${DB}/stats.json`);
+    const data = (await res.json()) || {};
+    document.getElementById('statViews').textContent  = fmt(data.views  || 0);
+    document.getElementById('statLikes').textContent  = fmt(data.likes  || 0);
+    document.getElementById('statShares').textContent = fmt(data.shares || 0);
+  } catch (e) {
+    console.warn('Stats load failed:', e);
+  }
+}
+
+// Safely increment one key (reads current value, writes +1)
+async function increment(key) {
+  const res     = await fetch(`${DB}/stats/${key}.json`);
+  const current = (await res.json()) || 0;
+  const next    = current + 1;
+  await fetch(`${DB}/stats/${key}.json`, {
+    method: 'PUT',
+    body: JSON.stringify(next)
+  });
+  return next;
+}
+
+// Page view — increments once per browser session (not per page reload)
+async function trackView() {
+  if (sessionStorage.getItem('kw_viewed')) {
+    return; // already counted this session
+  }
+  sessionStorage.setItem('kw_viewed', '1');
+  const next = await increment('views');
+  document.getElementById('statViews').textContent = fmt(next);
+}
+
+// Like button — one like per device (stored in localStorage)
+async function handleLike() {
+  if (localStorage.getItem('kw_liked')) return; // already liked
+  localStorage.setItem('kw_liked', '1');
+  const next = await increment('likes');
+  document.getElementById('statLikes').textContent = fmt(next);
+  const btn = document.getElementById('likeBtn');
+  if (btn) { btn.textContent = '♥ Liked'; btn.style.opacity = '0.5'; btn.style.cursor = 'default'; }
+}
+
+// Share button — uses native share sheet on mobile, copies URL on desktop
+async function handleShare() {
+  try {
+    if (navigator.share) {
+      await navigator.share({ title: 'KABSU Wiki', url: window.location.href });
+    } else {
+      await navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+    const next = await increment('shares');
+    document.getElementById('statShares').textContent = fmt(next);
+  } catch (e) {
+    // User cancelled share — don't count it
+  }
+}
+
+// Run on page load
+loadStats();
+trackView();
+
+// Restore liked state on revisit
+if (localStorage.getItem('kw_liked')) {
+  window.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('likeBtn');
+    if (btn) { btn.textContent = '♥ Liked'; btn.style.opacity = '0.5'; btn.style.cursor = 'default'; }
+  });
+}
+// ============================================================
+
 // Core Values Carousel
 const values = ['TRUTH', 'EXCELLENCE', 'SERVICE', 'INTEGRITY'];
 
