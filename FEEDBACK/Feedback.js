@@ -14,8 +14,7 @@ function updateNavbar() {
 updateNavbar();
 window.addEventListener('scroll', updateNavbar, { passive: true });
 
-// Feedback form submit handler
-function handleSubmit() {
+async function handleSubmit() {
     const firstName = document.getElementById('firstName').value.trim();
     const lastName = document.getElementById('lastName').value.trim();
     const email = document.getElementById('email').value.trim();
@@ -27,23 +26,47 @@ function handleSubmit() {
         return;
     }
 
-    // Basic email format check
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
         alert('Please enter a valid email address.');
         return;
     }
 
-    // Show success message
-    const successMsg = document.getElementById('successMsg');
-    successMsg.classList.add('visible');
-
-    // Disable submit button
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.style.opacity = '0.6';
-    btn.style.cursor = 'default';
+    btn.textContent = 'Sending…';
 
-    // Scroll to success message
-    successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Collect checked feedback types
+    const types = [...document.querySelectorAll('.checkbox-group input:checked')]
+        .map(cb => cb.value).join(', ');
+
+    const rating = document.querySelector('input[name="rating"]:checked')?.value || 'Not rated';
+    const role = document.getElementById('role').value || 'Not specified';
+
+    const formData = {
+        firstName, lastName, email, role,
+        feedbackTypes: types || 'None selected',
+        subject, message, rating
+    };
+
+    try {
+        const res = await fetch('https://formspree.io/f/xqejdbwl', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+
+        if (res.ok) {
+            document.getElementById('successMsg').classList.add('visible');
+            document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+            alert('Submission failed. Please try again.');
+            btn.disabled = false;
+            btn.innerHTML = '<span>&#10003;</span> Submit Feedback';
+        }
+    } catch {
+        alert('Network error. Please check your connection and try again.');
+        btn.disabled = false;
+        btn.innerHTML = '<span>&#10003;</span> Submit Feedback';
+    }
 }
